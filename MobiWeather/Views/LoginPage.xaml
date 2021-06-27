@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:MobiWeather.ViewModels"
-             x:Class="MobiWeather.Views.RegisterPage">
+             x:Class="MobiWeather.Views.LoginPage">
     <ContentPage.BindingContext>
-        <viewmodels:RegisterViewModel/>
+        <viewmodels:LoginViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <Grid RowDefinitions="Auto, *">
@@ -30,38 +30,11 @@
                                HeightRequest="64" WidthRequest="360"
                                HorizontalOptions="StartAndExpand"/>
                     </Frame>
-                    <Frame CornerRadius="10"
-                           WidthRequest="360"
-                           HeightRequest="64"
-                           Padding="0">
-                        <Entry Text="{Binding ConfirmPassword}" Placeholder="Confirm Password" IsPassword="true"
-                                   VerticalOptions="Center"
-                                   HeightRequest="64" WidthRequest="360"
-                                   HorizontalOptions="StartAndExpand"/>
-                    </Frame>
-                    <Frame CornerRadius="10"
-                           WidthRequest="360"
-                           HeightRequest="64"
-                           Padding="0">
-                        <Entry Text="{Binding FirstName}" 
-                               VerticalOptions="Center" Placeholder="First name"
-                               HeightRequest="64" WidthRequest="360"
-                               HorizontalOptions="StartAndExpand"/>
-                    </Frame>
-                    <Frame CornerRadius="10"
-                           WidthRequest="360"
-                           HeightRequest="64"
-                           Padding="0">
-                        <Entry Text="{Binding LastName}" 
-                               VerticalOptions="Center" Placeholder="Last name"
-                               HeightRequest="64" WidthRequest="360"
-                               HorizontalOptions="StartAndExpand"/>
-                    </Frame>
                 </StackLayout>
                 <StackLayout Padding="40, 0, 40, 50">
-                    <Button Command="{Binding RegisterCommand}" Text="Register" HeightRequest="64" 
+                    <Button Command="{Binding LoginCommand}" Text="Login" HeightRequest="64" 
                                 WidthRequest="360" CornerRadius="10"/>
-                    <Button Command="{Binding SwitchToLoginCommand}" Text="I have an account" HeightRequest="64" 
+                    <Button Command="{Binding SwitchToRegisterCommand}" Text="Sign up" HeightRequest="64" 
                                 WidthRequest="360" CornerRadius="10"/>
                 </StackLayout>
             </StackLayout>
