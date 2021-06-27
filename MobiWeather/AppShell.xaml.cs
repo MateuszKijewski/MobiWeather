@@ -1,5 +1,4 @@
-﻿using MobiWeather.ViewModels;
-using MobiWeather.Views;
+﻿using MobiWeather.Views;
 using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
@@ -11,8 +10,6 @@ namespace MobiWeather
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
-            Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

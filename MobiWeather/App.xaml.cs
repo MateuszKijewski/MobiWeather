@@ -1,5 +1,4 @@
-﻿using MobiWeather.Services;
-using MobiWeather.Views;
+﻿using MobiWeather.Views;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -13,7 +12,6 @@ namespace MobiWeather
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
         }
 
