@@ -29,25 +29,27 @@ namespace MobiWeather.ViewModels
 
         private async void Login(object obj)
         {
-            if (string.IsNullOrEmpty(UserName) 
-                || string.IsNullOrEmpty(Password))
-            {
-                PopupHelper.DisplayMessage("Fields cannot be empty", "Incorrect data");
-                return;
-            }
+            await Shell.Current.GoToAsync($"{nameof(CurrentWeatherPage)}");
 
-            try
-            {
-                await _authService.Login(new LoginContract
-                {
-                    Username = UserName,
-                    Password = Password
-                });
-            }
-            catch (Exception ex)
-            {
-                PopupHelper.DisplayMessage(ex.Message, "Login error");
-            }
+            //if (string.IsNullOrEmpty(UserName) 
+            //    || string.IsNullOrEmpty(Password))
+            //{
+            //    PopupHelper.DisplayMessage("Fields cannot be empty", "Incorrect data");
+            //    return;
+            //}
+
+            //try
+            //{
+            //    await _authService.Login(new LoginContract
+            //    {
+            //        Username = UserName,
+            //        Password = Password
+            //    });
+            //}
+            //catch (Exception ex)
+            //{
+            //    PopupHelper.DisplayMessage(ex.Message, "Login error");
+            //}
         }
 
         private string _userName;
