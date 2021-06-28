@@ -16,6 +16,7 @@ namespace MobiWeather
 
             DependencyService.RegisterSingleton<ISettingsService>(new SettingsService());
             DependencyService.Register<IAuthService, AuthService>();
+            DependencyService.Register<IWeatherService, WeatherService>();
 
             MainPage = new AppShell();
         }

@@ -1,12 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:MobiWeather.ViewModels"
              x:Class="MobiWeather.Views.CurrentWeatherPage">
+    <ContentPage.BindingContext>
+        <viewmodels:CurrentWeatherViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid RowDefinitions="Auto, *">
+            <Label Text="{Binding UserName}" FontSize="36"
+               Margin="0, 40, 0, 0"
+               HorizontalOptions="Center"/>
+            <StackLayout Grid.Row="1" VerticalOptions="Center">
+                <StackLayout Padding="40, 0, 40, 40" Spacing="10">
+                    <Frame CornerRadius="10"
+                           WidthRequest="360"
+                           HeightRequest="64"
+                           Padding="0">
+                        <Entry Text="{Binding City}" Placeholder="City"
+                               VerticalOptions="Center"
+                               HeightRequest="64" WidthRequest="360" 
+                               HorizontalOptions="StartAndExpand"/>
+                    </Frame>
+                </StackLayout>
+                <StackLayout Padding="40, 0, 40, 50">
+                    <Image Source="{Binding Icon}" Scale="10" Margin="25, 25, 25, 25"/>
+                    <Label Text="{Binding Main}"/>
+                    <Label Text="{Binding Description}"/>
+                    <Label Text="{Binding TempCelsius}"/>
+                </StackLayout>
+                <StackLayout Padding="40, 0, 40, 50">
+                    <Button Command="{Binding GetCurrentWeatherByCityCommand}" Text="Get by city" HeightRequest="64" 
+                                WidthRequest="360" CornerRadius="10"/>
+                    <Button Command="{Binding GetCurrentWeatherByGeoCommand}" Text="Get by my location" HeightRequest="64" 
+                                WidthRequest="360" CornerRadius="10"/>
+                </StackLayout>
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

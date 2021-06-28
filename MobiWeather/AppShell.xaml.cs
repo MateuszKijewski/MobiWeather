@@ -12,6 +12,7 @@ namespace MobiWeather
             InitializeComponent();
             Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
             Routing.RegisterRoute(nameof(RegisterPage), typeof(RegisterPage));
+            Routing.RegisterRoute(nameof(CurrentWeatherPage), typeof(CurrentWeatherPage));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)
