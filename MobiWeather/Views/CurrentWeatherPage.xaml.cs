@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace MobiWeather.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LoginPage : ContentPage
+    public partial class CurrentWeatherPage : ContentPage
     {
-        public LoginPage()
+        public CurrentWeatherPage()
         {
             InitializeComponent();
         }
