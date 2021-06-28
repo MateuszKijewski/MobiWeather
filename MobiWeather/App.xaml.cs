@@ -1,4 +1,6 @@
-﻿using MobiWeather.Views;
+﻿using MobiWeather.Common;
+using MobiWeather.Services;
+using MobiWeather.Views;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -11,6 +13,9 @@ namespace MobiWeather
         public App()
         {
             InitializeComponent();
+
+            DependencyService.RegisterSingleton<ISettingsService>(new SettingsService());
+            DependencyService.Register<IAuthService, AuthService>();
 
             MainPage = new AppShell();
         }
