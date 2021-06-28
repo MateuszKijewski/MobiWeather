@@ -1,9 +1,8 @@
-﻿using MobiWeather.Helpers;
+﻿using MobiWeather.Common;
+using MobiWeather.Helpers;
+using MobiWeather.Models.Contracts;
 using MobiWeather.Views;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -11,8 +10,12 @@ namespace MobiWeather.ViewModels
 {
     public class RegisterViewModel : BindableObject
     {
+        private readonly IAuthService _authService;
+
         public RegisterViewModel()
         {
+            _authService = DependencyService.Get<IAuthService>();
+
             RegisterCommand = new Command(Register);
             SwitchToLoginCommand = new Command(SwitchToLogin);
         }
@@ -22,7 +25,7 @@ namespace MobiWeather.ViewModels
             await Shell.Current.GoToAsync($"{nameof(LoginPage)}");
         }
 
-        private void Register(object obj)
+        private async void Register(object obj)
         {
             if (string.IsNullOrEmpty(UserName)
                 || string.IsNullOrEmpty(Password)
@@ -32,6 +35,23 @@ namespace MobiWeather.ViewModels
             {
                 PopupHelper.DisplayMessage("Fields cannot be empty", "Incorrect data");
                 return;
+            }
+
+            try
+            {
+                await _authService.Register(new RegisterContract
+                {
+                    FirstName = FirstName,
+                    LastName = LastName,
+                    Password = Password,
+                    Username = UserName
+                });
+
+                await Shell.Current.GoToAsync($"{nameof(LoginPage)}");
+            }
+            catch (Exception ex)
+            {
+                PopupHelper.DisplayMessage(ex.Message, "Registration error");
             }
         }
 

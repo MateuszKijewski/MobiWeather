@@ -1,4 +1,6 @@
-﻿using MobiWeather.Helpers;
+﻿using MobiWeather.Common;
+using MobiWeather.Helpers;
+using MobiWeather.Models.Contracts;
 using MobiWeather.Views;
 using System;
 using System.Collections.Generic;
@@ -10,8 +12,12 @@ namespace MobiWeather.ViewModels
 {
     public class LoginViewModel : BindableObject
     {
+        private readonly IAuthService _authService;
+
         public LoginViewModel()
         {
+            _authService = DependencyService.Get<IAuthService>();
+
             LoginCommand = new Command(Login);
             SwitchToRegisterCommand = new Command(SwitchToRegister);
         }
@@ -21,13 +27,26 @@ namespace MobiWeather.ViewModels
             await Shell.Current.GoToAsync($"//{nameof(RegisterPage)}");
         }
 
-        private void Login(object obj)
+        private async void Login(object obj)
         {
             if (string.IsNullOrEmpty(UserName) 
                 || string.IsNullOrEmpty(Password))
             {
                 PopupHelper.DisplayMessage("Fields cannot be empty", "Incorrect data");
                 return;
+            }
+
+            try
+            {
+                await _authService.Login(new LoginContract
+                {
+                    Username = UserName,
+                    Password = Password
+                });
+            }
+            catch (Exception ex)
+            {
+                PopupHelper.DisplayMessage(ex.Message, "Login error");
             }
         }
 
