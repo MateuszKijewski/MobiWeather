@@ -7,7 +7,7 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <Grid RowDefinitions="Auto, *">
-            <Label Text="Registration" FontSize="36"
+            <Label Text="Login" FontSize="36"
                Margin="0, 40, 0, 0"
                HorizontalOptions="Center"/>
             <StackLayout Grid.Row="1" VerticalOptions="Center">

@@ -30,7 +30,7 @@ namespace MobiWeather.Services
             _serializerSettings.Converters.Add(new StringEnumConverter());
         }
 
-        public async Task Login(LoginContract loginContract)
+        public async Task<LoginResponse> Login(LoginContract loginContract)
         {
             var client = CreateHttpClient();
             var content = new StringContent(JsonConvert.SerializeObject(loginContract, _serializerSettings));
@@ -45,6 +45,8 @@ namespace MobiWeather.Services
 
                 _settingsService.AccessToken = convertedResponse.Token;
                 _settingsService.UserName = loginContract.Username;
+
+                return convertedResponse;
             }
             throw new Exception("Login failed");
         }
